@@ -48,6 +48,8 @@
             --text-muted: #64748b;
             --border: #e2e8f0;
             --grid-color: rgba(26, 58, 92, 0.03);
+            --card-bg: #ffffff;
+            --card-border: rgba(226, 232, 240, 0.8);
         }
 
         html {
@@ -668,6 +670,151 @@
             background: var(--bg-alt);
         }
 
+        /* Projects / GitHub Section */
+        .projects-section {
+            background: var(--surface);
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .project-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 1.75rem;
+            padding: 2rem 2rem 1.75rem;
+            text-decoration: none;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .project-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--primary);
+            box-shadow: 0 30px 60px -20px rgba(26, 58, 92, 0.15);
+        }
+
+        .project-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1.25rem;
+        }
+
+        .project-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, rgba(26, 58, 92, 0.08), rgba(46, 125, 50, 0.08));
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .project-card:hover .project-icon {
+            background: var(--primary);
+            transform: scale(1.1) rotate(-4deg);
+        }
+
+        .project-icon svg {
+            width: 22px;
+            height: 22px;
+            stroke: var(--primary);
+            transition: stroke 0.3s;
+        }
+
+        .project-card:hover .project-icon svg {
+            stroke: white;
+        }
+
+        .project-lang {
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--text-muted);
+            background: var(--bg-alt);
+            padding: 0.35rem 0.85rem;
+            border-radius: 100px;
+        }
+
+        .project-card h3 {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.6rem;
+        }
+
+        .project-card p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+            flex: 1;
+            margin-bottom: 1.5rem;
+        }
+
+        .project-link {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--secondary);
+            transition: gap 0.3s;
+        }
+
+        .project-link svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        .project-card:hover .project-link {
+            gap: 0.85rem;
+        }
+
+        .projects-footer {
+            text-align: center;
+        }
+
+        .btn-github {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            background: var(--primary-dark);
+            color: white;
+            padding: 1rem 2.25rem;
+            border-radius: 100px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .btn-github:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px -10px rgba(26, 58, 92, 0.35);
+        }
+
+        .btn-github svg {
+            width: 22px;
+            height: 22px;
+        }
+
         .faq-list {
             max-width: 800px;
             margin: 0 auto;
@@ -1084,6 +1231,142 @@
             width: 18px;
             height: 18px;
             stroke: var(--secondary);
+        }
+
+        /* GitHub Projects Section */
+        .github-projects {
+            padding: 5rem 0 3rem;
+            border-top: 1px solid rgba(255,255,255,0.06);
+        }
+
+        .github-projects-header {
+            margin-bottom: 3rem;
+        }
+
+        .github-projects-title {
+            font-family: 'Syne', sans-serif;
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            color: var(--text);
+            margin-top: 0.5rem;
+        }
+
+        .github-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.25rem;
+        }
+
+        .github-card {
+            display: flex;
+            flex-direction: column;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 1.5rem;
+            padding: 1.75rem;
+            text-decoration: none;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .github-card:hover {
+            border-color: var(--secondary);
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px -12px rgba(34, 197, 94, 0.15);
+        }
+
+        .github-card-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1.25rem;
+        }
+
+        .github-icon {
+            width: 28px;
+            height: 28px;
+            fill: var(--text-muted);
+            flex-shrink: 0;
+        }
+
+        .github-card:hover .github-icon {
+            fill: var(--secondary);
+        }
+
+        .github-arrow {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .github-arrow svg {
+            width: 14px;
+            height: 14px;
+            stroke: var(--text-muted);
+        }
+
+        .github-card:hover .github-arrow {
+            background: var(--secondary);
+        }
+
+        .github-card:hover .github-arrow svg {
+            stroke: #052e16;
+        }
+
+        .github-card-body h4 {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--text);
+            letter-spacing: -0.02em;
+            margin-bottom: 0.625rem;
+        }
+
+        .github-card-body p {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+            margin-bottom: 0;
+        }
+
+        .github-card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: auto;
+            padding-top: 1.5rem;
+        }
+
+        .github-lang {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--text-muted);
+        }
+
+        .lang-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        .lang-dot.html { background: #e44d26; }
+        .lang-dot.ts { background: #3178c6; }
+
+        .github-updated {
+            font-size: 0.775rem;
+            color: var(--text-muted);
+            opacity: 0.6;
         }
 
         /* Testimonials Section */
@@ -2449,6 +2732,137 @@
         </div>
     </section>
 
+    <!-- GitHub Projects -->
+    <section id="projects" class="projects-section">
+        <div class="section-inner">
+            <div class="section-header scroll-reveal">
+                <div class="section-label">Open Source</div>
+                <h2 class="section-title">Our Work,<br>Open for Inspection.</h2>
+                <p class="section-subtitle">
+                    Every project lives on GitHub. Browse the code, see the commits, check the activity.
+                </p>
+            </div>
+            <div class="projects-grid">
+                <a href="https://github.com/Kgothatso012/ScholarTrack" target="_blank" class="project-card scroll-reveal">
+                    <div class="project-header">
+                        <div class="project-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                            </svg>
+                        </div>
+                        <div class="project-lang">TypeScript</div>
+                    </div>
+                    <h3>ScholarTrack</h3>
+                    <p>RSA government child transport safety app — Parent, Driver, Admin dashboards with real-time fleet tracking.</p>
+                    <div class="project-link">
+                        View on GitHub
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </div>
+                </a>
+                <a href="https://github.com/Kgothatso012/BTMM-TRADER-PRO" target="_blank" class="project-card scroll-reveal">
+                    <div class="project-header">
+                        <div class="project-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+                            </svg>
+                        </div>
+                        <div class="project-lang">Python</div>
+                    </div>
+                    <h3>BTMM Trader Pro</h3>
+                    <p>Beat The Market Maker trading system — real-time MT5 bridge, trade journal, pattern analysis, AI learning.</p>
+                    <div class="project-link">
+                        View on GitHub
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </div>
+                </a>
+                <a href="https://github.com/Kgothatso012/sans-plan-examiner" target="_blank" class="project-card scroll-reveal">
+                    <div class="project-header">
+                        <div class="project-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/>
+                            </svg>
+                        </div>
+                        <div class="project-lang">HTML</div>
+                    </div>
+                    <h3>SANS Plan Examiner</h3>
+                    <p>AI-powered building plan compliance checking against SANS 10400 regulations. PDF upload, instant audit report.</p>
+                    <div class="project-link">
+                        View on GitHub
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </div>
+                </a>
+                <a href="https://github.com/Kgothatso012/FleetFlowingZA" target="_blank" class="project-card scroll-reveal">
+                    <div class="project-header">
+                        <div class="project-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/>
+                            </svg>
+                        </div>
+                        <div class="project-lang">TypeScript</div>
+                    </div>
+                    <h3>FleetFlowingZA</h3>
+                    <p>Fleet tracking logistics app built with Expo React Native. Real-time vehicle monitoring for SA logistics firms.</p>
+                    <div class="project-link">
+                        View on GitHub
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </div>
+                </a>
+                <a href="https://github.com/Kgothatso012/the-witness" target="_blank" class="project-card scroll-reveal">
+                    <div class="project-header">
+                        <div class="project-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/>
+                            </svg>
+                        </div>
+                        <div class="project-lang">TypeScript</div>
+                    </div>
+                    <h3>The Witness</h3>
+                    <p>Bible AI Application — a reverent AI preacher powered by MiniMax API. Scripture study and theological Q&A.</p>
+                    <div class="project-link">
+                        View on GitHub
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </div>
+                </a>
+                <a href="https://github.com/Kgothatso012/makena-automation-website" target="_blank" class="project-card scroll-reveal">
+                    <div class="project-header">
+                        <div class="project-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/>
+                            </svg>
+                        </div>
+                        <div class="project-lang">HTML</div>
+                    </div>
+                    <h3>Makena Automation Website</h3>
+                    <p>This site — production-ready automation tools for South African engineering firms. Built with vanilla HTML/CSS/JS.</p>
+                    <div class="project-link">
+                        View on GitHub
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </div>
+                </a>
+            </div>
+            <div class="projects-footer scroll-reveal">
+                <a href="https://github.com/kgothatso012" target="_blank" class="btn-github">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/>
+                    </svg>
+                    View All Repositories on GitHub
+                </a>
+            </div>
+        </div>
+    </section>
+
     <!-- Portfolio Section -->
     <section id="portfolio" class="portfolio">
         <div class="section-inner">
@@ -2555,6 +2969,99 @@
                             1,400 documents processed daily
                         </div>
                     </div>
+                </div>
+            </div>
+
+            <!-- GitHub Projects -->
+            <div class="github-projects scroll-reveal">
+                <div class="github-projects-header">
+                    <div class="section-label">Open Source</div>
+                    <h3 class="github-projects-title">Code That Speaks for Itself</h3>
+                </div>
+                <div class="github-grid">
+                    <a href="https://github.com/Kgothatso012/sans-plan-examiner" target="_blank" class="github-card">
+                        <div class="github-card-top">
+                            <svg class="github-icon" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+                            </svg>
+                            <span class="github-arrow">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+                            </span>
+                        </div>
+                        <div class="github-card-body">
+                            <h4>sans-plan-examiner</h4>
+                            <p>AI-powered building plan compliance checker for Tshwane Municipality. SANS 10400 clause analysis with PDF upload and instant audit reports.</p>
+                        </div>
+                        <div class="github-card-footer">
+                            <span class="github-lang">
+                                <span class="lang-dot html"></span>HTML
+                            </span>
+                            <span class="github-updated">Updated Apr 5</span>
+                        </div>
+                    </a>
+
+                    <a href="https://github.com/Kgothatso012/sans-wiki" target="_blank" class="github-card">
+                        <div class="github-card-top">
+                            <svg class="github-icon" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+                            </svg>
+                            <span class="github-arrow">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+                            </span>
+                        </div>
+                        <div class="github-card-body">
+                            <h4>sans-wiki</h4>
+                            <p>SANS 10400 Building Regulations knowledge base for Joe's Examiner AI. Structured wiki for South African building compliance reference.</p>
+                        </div>
+                        <div class="github-card-footer">
+                            <span class="github-lang">
+                                <span class="lang-dot html"></span>HTML
+                            </span>
+                            <span class="github-updated">Updated Apr 6</span>
+                        </div>
+                    </a>
+
+                    <a href="https://github.com/Kgothatso012/FleetFlowingZA" target="_blank" class="github-card">
+                        <div class="github-card-top">
+                            <svg class="github-icon" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+                            </svg>
+                            <span class="github-arrow">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+                            </span>
+                        </div>
+                        <div class="github-card-body">
+                            <h4>FleetFlowingZA</h4>
+                            <p>Fleet tracking logistics app built with Expo React Native. Real-time vehicle monitoring for South African transport operators.</p>
+                        </div>
+                        <div class="github-card-footer">
+                            <span class="github-lang">
+                                <span class="lang-dot ts"></span>TypeScript
+                            </span>
+                            <span class="github-updated">Updated Mar 6</span>
+                        </div>
+                    </a>
+
+                    <a href="https://github.com/Kgothatso012/makena-automation-website" target="_blank" class="github-card">
+                        <div class="github-card-top">
+                            <svg class="github-icon" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+                            </svg>
+                            <span class="github-arrow">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+                            </span>
+                        </div>
+                        <div class="github-card-body">
+                            <h4>makena-automation-website</h4>
+                            <p>This website. Awwwards-level product studio site for Makena Automation Studios. Syne + Inter, scroll animations, 3D tilt, custom cursor.</p>
+                        </div>
+                        <div class="github-card-footer">
+                            <span class="github-lang">
+                                <span class="lang-dot html"></span>HTML
+                            </span>
+                            <span class="github-updated">Updated Apr 20</span>
+                        </div>
+                    </a>
                 </div>
             </div>
         </div>

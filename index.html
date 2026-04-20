@@ -988,6 +988,240 @@
             line-height: 1.65;
         }
 
+        /* Websites Section */
+        .websites-section {
+            background: var(--bg-alt);
+        }
+
+        .pricing-toggle {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 4rem;
+        }
+
+        .toggle-btn {
+            padding: 0.875rem 2rem;
+            background: var(--surface);
+            border: 2px solid var(--border);
+            border-radius: 100px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .toggle-btn:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .toggle-btn.active {
+            background: var(--primary);
+            border-color: var(--primary);
+            color: white;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-bottom: 5rem;
+        }
+
+        .pricing-card {
+            background: var(--surface);
+            border-radius: 2rem;
+            padding: 2.5rem;
+            border: 2px solid var(--border);
+            position: relative;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .pricing-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 40px 80px -20px rgba(0, 0, 0, 0.12);
+            border-color: var(--secondary);
+        }
+
+        .pricing-card.featured {
+            border-color: var(--secondary);
+            background: linear-gradient(180deg, rgba(46, 125, 50, 0.03) 0%, var(--surface) 50%);
+        }
+
+        .pricing-badge {
+            position: absolute;
+            top: -1rem;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--secondary);
+            color: white;
+            padding: 0.5rem 1.25rem;
+            border-radius: 100px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .pricing-header h3 {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .pricing-header p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+        }
+
+        .pricing-price {
+            margin-bottom: 2rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .pricing-price .price {
+            font-family: 'Syne', sans-serif;
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--secondary);
+        }
+
+        .pricing-price .period {
+            display: block;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-top: 0.25rem;
+        }
+
+        .pricing-features {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        .pricing-features .feature {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 0.95rem;
+            color: var(--text);
+            margin-bottom: 0.875rem;
+        }
+
+        .pricing-features .feature svg {
+            width: 20px;
+            height: 20px;
+            stroke: var(--secondary);
+            flex-shrink: 0;
+        }
+
+        .pricing-delivery {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.875rem;
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+        }
+
+        .pricing-delivery svg {
+            width: 18px;
+            height: 18px;
+            stroke: var(--text-muted);
+        }
+
+        .pricing-card .btn-card {
+            width: 100%;
+            padding: 1.125rem;
+            background: transparent;
+            border: 2px solid var(--border);
+            border-radius: 100px;
+            font-weight: 600;
+            font-size: 0.925rem;
+            color: var(--primary);
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .pricing-card .btn-card:hover {
+            background: var(--primary);
+            border-color: var(--primary);
+            color: white;
+        }
+
+        .pricing-card .btn-featured {
+            background: var(--secondary);
+            border-color: var(--secondary);
+            color: white;
+        }
+
+        .pricing-card .btn-featured:hover {
+            background: var(--primary);
+            border-color: var(--primary);
+        }
+
+        .websites-addons {
+            background: var(--surface);
+            border-radius: 2rem;
+            padding: 3rem;
+            border: 1px solid var(--border);
+        }
+
+        .websites-addons h3 {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .addons-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+
+        .addon {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.25rem;
+            background: var(--bg);
+            border-radius: 1rem;
+            transition: all 0.3s;
+        }
+
+        .addon:hover {
+            background: var(--bg-alt);
+            transform: translateY(-2px);
+        }
+
+        .addon h4 {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .addon-price {
+            font-family: 'Syne', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--secondary);
+        }
+
         /* Build Your Own Section */
         .build-section {
             background: var(--bg-alt);
@@ -1511,6 +1745,14 @@
                 grid-template-columns: 1fr;
             }
 
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .addons-grid {
+                grid-template-columns: 1fr;
+            }
+
             .about-stats {
                 grid-template-columns: 1fr;
                 text-align: center;
@@ -1560,6 +1802,7 @@
             <ul class="nav-links">
                 <li><a href="#portfolio">Work</a></li>
                 <li><a href="#products">Products</a></li>
+                <li><a href="#websites">Websites</a></li>
                 <li><a href="#build">Build</a></li>
                 <li><a href="#about">About</a></li>
                 <li><a href="#contact">Contact</a></li>
@@ -1851,7 +2094,7 @@
                     <p>Professional websites for engineering firms. Includes hosting, SSL, and maintenance. Turnkey solutions from R5,000.</p>
                     <div class="product-price">R5,000</div>
                     <div class="product-price-label">R25,000 one-time</div>
-                    <button class="btn-card">Contact for Demo</button>
+                    <button class="btn-card">View Packages</button>
                 </div>
 
                 <div class="product-card">
@@ -1867,6 +2110,195 @@
                     <div class="product-price">R15,000</div>
                     <div class="product-price-label">R40,000 one-time</div>
                     <button class="btn-card">Contact for Demo</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Websites Section -->
+    <section id="websites">
+        <div class="section-inner">
+            <div class="section-header scroll-reveal">
+                <div class="section-label">Website Packages</div>
+                <h2 class="section-title">Professional Websites<br>That Work for You</h2>
+                <p class="section-subtitle">
+                    From landing pages to full business websites. All hosted, secured, and maintained.
+                </p>
+            </div>
+
+            <div class="pricing-toggle">
+                <button class="toggle-btn active" data-period="starter">Starter</button>
+                <button class="toggle-btn" data-period="professional">Professional</button>
+                <button class="toggle-btn" data-period="enterprise">Enterprise</button>
+            </div>
+
+            <div class="pricing-grid">
+                <!-- Starter -->
+                <div class="pricing-card active">
+                    <div class="pricing-header">
+                        <h3>Landing Page</h3>
+                        <p>Perfect for service-based businesses</p>
+                    </div>
+                    <div class="pricing-price">
+                        <span class="price">R5,000</span>
+                        <span class="period">one-time</span>
+                    </div>
+                    <div class="pricing-features">
+                        <div class="feature">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                            Single page design
+                        </div>
+                        <div class="feature">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                            Mobile responsive
+                        </div>
+                        <div class="feature">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                            Contact form
+                        </div>
+                        <div class="feature">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                            SSL certificate
+                        </div>
+                        <div class="feature">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                            Basic SEO setup
+                        </div>
+                        <div class="feature">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                            1 month hosting
+                        </div>
+                    </div>
+                    <div class="pricing-delivery">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                        5 day delivery
+                    </div>
+                    <button class="btn-card">Get Started</button>
+                </div>
+
+                <!-- Professional -->
+                <div class="pricing-card featured">
+                    <div class="pricing-badge">Most Popular</div>
+                    <div class="pricing-header">
+                        <h3>Business Website</h3>
+                        <p>Full website with multiple pages</p>
+                    </div>
+                    <div class="pricing-price">
+                        <span class="price">R12,000</span>
+                        <span class="period">one-time</span>
+                    </div>
+                    <div class="pricing-features">
+                        <div class="feature">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                            Up to 5 pages
+                        </div>
+                        <div class="feature">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                            Custom design
+                        </div>
+                        <div class="feature">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                            Contact form + email
+                        </div>
+                        <div class="feature">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                            Google Maps integration
+                        </div>
+                        <div class="feature">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                            Social media links
+                        </div>
+                        <div class="feature">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                            6 months hosting included
+                        </div>
+                        <div class="feature">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                            Advanced SEO
+                        </div>
+                    </div>
+                    <div class="pricing-delivery">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                        10 day delivery
+                    </div>
+                    <button class="btn-card btn-featured">Contact for Demo</button>
+                </div>
+
+                <!-- Enterprise -->
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <h3>Enterprise Suite</h3>
+                        <p>Complete online presence</p>
+                    </div>
+                    <div class="pricing-price">
+                        <span class="price">R25,000</span>
+                        <span class="period">one-time</span>
+                    </div>
+                    <div class="pricing-features">
+                        <div class="feature">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                            Unlimited pages
+                        </div>
+                        <div class="feature">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                            CMS admin panel
+                        </div>
+                        <div class="feature">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                            Blog / News section
+                        </div>
+                        <div class="feature">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                            Online booking system
+                        </div>
+                        <div class="feature">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                            Payment integration
+                        </div>
+                        <div class="feature">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                            12 months hosting
+                        </div>
+                        <div class="feature">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                            Priority support
+                        </div>
+                    </div>
+                    <div class="pricing-delivery">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                        21 day delivery
+                    </div>
+                    <button class="btn-card">Contact for Quote</button>
+                </div>
+            </div>
+
+            <div class="websites-addons">
+                <h3>Add-ons</h3>
+                <div class="addons-grid">
+                    <div class="addon">
+                        <h4>Additional Pages</h4>
+                        <span class="addon-price">R1,500 / page</span>
+                    </div>
+                    <div class="addon">
+                        <h4>Custom Animations</h4>
+                        <span class="addon-price">R2,500</span>
+                    </div>
+                    <div class="addon">
+                        <h4>E-commerce Setup</h4>
+                        <span class="addon-price">R8,000</span>
+                    </div>
+                    <div class="addon">
+                        <h4>Logo Design</h4>
+                        <span class="addon-price">R3,000</span>
+                    </div>
+                    <div class="addon">
+                        <h4>Photography</h4>
+                        <span class="addon-price">R2,500 / session</span>
+                    </div>
+                    <div class="addon">
+                        <h4>Annual Hosting</h4>
+                        <span class="addon-price">R1,200 / year</span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -2223,6 +2655,25 @@
                 }
             }, observerOptions);
             cardObserver.observe(card);
+        });
+
+        // Observe pricing cards with stagger
+        document.querySelectorAll('.pricing-card').forEach((card, index) => {
+            const cardObserver = new IntersectionObserver((entries) => {
+                if (entries[0].isIntersecting) {
+                    setTimeout(() => card.classList.add('visible'), index * 150);
+                    cardObserver.unobserve(card);
+                }
+            }, observerOptions);
+            cardObserver.observe(card);
+        });
+
+        // Pricing toggle buttons
+        document.querySelectorAll('.toggle-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.toggle-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+            });
         });
 
         // Observe steps with stagger

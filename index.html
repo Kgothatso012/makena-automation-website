@@ -3,30 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Makena Automation Studios | Software that does your work for you</title>
+    <title>Makena Automation Studios | Software That Works for You</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --primary: #1a3a5c;
-            --primary-light: #2a4a6c;
-            --secondary: #2e7d32;
-            --secondary-light: #3e8d42;
-            --bg: #f5f7fa;
-            --bg-white: #ffffff;
-            --text-dark: #1a1a2e;
-            --text-body: #4a5568;
-            --text-muted: #718096;
-            --border: #e2e8f0;
-            --shadow: 0 20px 40px -15px rgba(26, 58, 92, 0.08);
-            --radius: 2.5rem;
-        }
-
         *, *::before, *::after {
-            box-sizing: border-box;
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #1a3a5c;
+            --primary-dark: #0f1f33;
+            --secondary: #2e7d32;
+            --secondary-light: #4caf50;
+            --bg: #fafbfc;
+            --bg-alt: #f0f2f5;
+            --surface: #ffffff;
+            --text: #1a1a2e;
+            --text-muted: #64748b;
+            --border: #e2e8f0;
+            --grid-color: rgba(26, 58, 92, 0.04);
         }
 
         html {
@@ -34,17 +33,23 @@
         }
 
         body {
-            font-family: 'Geist', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: var(--bg);
-            color: var(--text-body);
+            font-family: 'Geist', system-ui, -apple-system, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
             line-height: 1.6;
-            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
         }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 1.5rem;
+        /* Grid Background */
+        .grid-bg {
+            position: fixed;
+            inset: 0;
+            background-image:
+                linear-gradient(var(--grid-color) 1px, transparent 1px),
+                linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+            background-size: 60px 60px;
+            pointer-events: none;
+            z-index: 0;
         }
 
         /* Navigation */
@@ -54,20 +59,27 @@
             left: 0;
             right: 0;
             z-index: 100;
-            background: rgba(245, 247, 250, 0.9);
-            backdrop-filter: blur(12px);
-            border-bottom: 1px solid var(--border);
-            padding: 1rem 0;
+            padding: 1.25rem 2rem;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        nav .container {
+        nav.scrolled {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .nav-inner {
+            max-width: 1400px;
+            margin: 0 auto;
             display: flex;
-            justify-content: space-between;
             align-items: center;
+            justify-content: space-between;
         }
 
         .logo {
-            font-size: 1.25rem;
+            font-size: 1.5rem;
             font-weight: 700;
             color: var(--primary);
             text-decoration: none;
@@ -80,168 +92,379 @@
 
         .nav-links {
             display: flex;
-            gap: 2rem;
+            gap: 2.5rem;
             list-style: none;
         }
 
         .nav-links a {
-            color: var(--text-body);
+            color: var(--text-muted);
             text-decoration: none;
-            font-size: 0.9rem;
             font-weight: 500;
-            transition: color 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            font-size: 0.95rem;
+            transition: color 0.2s;
         }
 
         .nav-links a:hover {
             color: var(--primary);
         }
 
+        .nav-cta {
+            background: var(--primary);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 100px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .nav-cta:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
         /* Hero Section */
         .hero {
+            position: relative;
             min-height: 100dvh;
             display: flex;
             align-items: center;
-            padding: 8rem 0 5rem;
-            position: relative;
+            padding: 8rem 2rem 6rem;
             overflow: hidden;
         }
 
         .hero::before {
             content: '';
             position: absolute;
-            top: -20%;
-            right: -10%;
-            width: 600px;
-            height: 600px;
+            top: 10%;
+            right: -5%;
+            width: 500px;
+            height: 500px;
             background: radial-gradient(circle, rgba(46, 125, 50, 0.08) 0%, transparent 70%);
             border-radius: 50%;
             pointer-events: none;
         }
 
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: 5%;
+            left: -10%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(26, 58, 92, 0.05) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .hero-inner {
+            max-width: 1400px;
+            margin: 0 auto;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+
         .hero-content {
-            max-width: 720px;
+            position: relative;
+            z-index: 2;
         }
 
         .hero-badge {
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
+            background: rgba(46, 125, 50, 0.1);
+            color: var(--secondary);
             padding: 0.5rem 1rem;
-            background: var(--bg-white);
-            border: 1px solid var(--border);
-            border-radius: 2rem;
+            border-radius: 100px;
             font-size: 0.85rem;
-            color: var(--text-muted);
+            font-weight: 600;
             margin-bottom: 1.5rem;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
         }
 
-        .hero-badge svg {
-            width: 16px;
-            height: 16px;
-            color: var(--secondary);
+        .hero-badge::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            background: var(--secondary);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
         }
 
         .hero h1 {
-            font-size: clamp(2.5rem, 5vw, 4rem);
-            font-weight: 700;
-            color: var(--text-dark);
-            line-height: 1.1;
+            font-size: clamp(3rem, 6vw, 5rem);
+            font-weight: 800;
+            line-height: 1;
             letter-spacing: -0.03em;
-            margin-bottom: 1.5rem;
-        }
-
-        .hero h1 span {
             color: var(--primary);
+            margin-bottom: 1.5rem;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards;
         }
 
-        .hero p {
+        .hero h1 .highlight {
+            position: relative;
+            display: inline-block;
+        }
+
+        .hero h1 .highlight::after {
+            content: '';
+            position: absolute;
+            bottom: 0.1em;
+            left: 0;
+            right: 0;
+            height: 0.2em;
+            background: var(--secondary);
+            opacity: 0.3;
+            z-index: -1;
+        }
+
+        .hero-sub {
             font-size: 1.25rem;
-            color: var(--text-body);
-            max-width: 540px;
-            margin-bottom: 2.5rem;
+            color: var(--text-muted);
             line-height: 1.7;
+            max-width: 480px;
+            margin-bottom: 2.5rem;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.4s forwards;
         }
 
-        .hero-cta {
+        .hero-ctas {
             display: flex;
             gap: 1rem;
             flex-wrap: wrap;
-        }
-
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-            padding: 0.875rem 1.75rem;
-            border-radius: var(--radius);
-            font-size: 0.95rem;
-            font-weight: 600;
-            text-decoration: none;
-            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-            cursor: pointer;
-            border: none;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.5s forwards;
         }
 
         .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
             background: var(--primary);
             color: white;
+            padding: 1rem 2rem;
+            border-radius: 100px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+            border: none;
+            cursor: pointer;
         }
 
         .btn-primary:hover {
-            background: var(--primary-light);
-            transform: translateY(-2px);
-            box-shadow: var(--shadow);
+            background: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px -10px rgba(26, 58, 92, 0.3);
         }
 
         .btn-primary:active {
-            transform: translateY(0);
+            transform: translateY(-1px);
         }
 
         .btn-secondary {
-            background: var(--bg-white);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: transparent;
             color: var(--primary);
-            border: 1px solid var(--border);
+            padding: 1rem 2rem;
+            border-radius: 100px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            border: 2px solid var(--border);
+            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+            cursor: pointer;
         }
 
         .btn-secondary:hover {
             border-color: var(--primary);
-            transform: translateY(-2px);
+            background: rgba(26, 58, 92, 0.03);
+            transform: translateY(-3px);
         }
 
-        /* Products Section */
-        .products {
-            padding: 6rem 0;
+        /* Hero Visual */
+        .hero-visual {
+            position: relative;
+            height: 500px;
+            opacity: 0;
+            transform: translateX(40px);
+            animation: fadeLeft 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.6s forwards;
         }
 
-        .section-header {
-            text-align: left;
-            margin-bottom: 4rem;
+        .hero-card {
+            position: absolute;
+            background: var(--surface);
+            border-radius: 1.5rem;
+            padding: 2rem;
+            box-shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.1);
+            border: 1px solid var(--border);
         }
 
-        .section-label {
-            font-size: 0.8rem;
-            font-weight: 600;
-            color: var(--secondary);
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            margin-bottom: 0.75rem;
+        .hero-card-1 {
+            top: 10%;
+            right: 10%;
+            width: 280px;
+            transform: rotate(3deg);
         }
 
-        .section-title {
-            font-size: clamp(2rem, 4vw, 2.75rem);
-            font-weight: 700;
-            color: var(--text-dark);
-            letter-spacing: -0.02em;
+        .hero-card-2 {
+            bottom: 15%;
+            left: 5%;
+            width: 240px;
+            transform: rotate(-5deg);
+        }
+
+        .hero-card-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             margin-bottom: 1rem;
         }
 
-        .section-desc {
-            font-size: 1.1rem;
-            color: var(--text-muted);
-            max-width: 600px;
+        .hero-card-icon svg {
+            width: 24px;
+            height: 24px;
+            stroke: white;
         }
 
+        .hero-card h4 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.25rem;
+        }
+
+        .hero-card p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .hero-card-price {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--secondary);
+            margin-top: 0.75rem;
+        }
+
+        /* Geometric Accents */
+        .geo-accent {
+            position: absolute;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .geo-triangle {
+            width: 0;
+            height: 0;
+            border-left: 30px solid transparent;
+            border-right: 30px solid transparent;
+            border-bottom: 52px solid var(--primary);
+            opacity: 0.04;
+        }
+
+        .geo-circle {
+            width: 100px;
+            height: 100px;
+            border: 2px solid var(--primary);
+            border-radius: 50%;
+            opacity: 0.04;
+        }
+
+        .geo-line-h {
+            height: 2px;
+            width: 150px;
+            background: linear-gradient(90deg, var(--primary), transparent);
+            opacity: 0.06;
+        }
+
+        .geo-line-v {
+            width: 2px;
+            height: 150px;
+            background: linear-gradient(180deg, var(--primary), transparent);
+            opacity: 0.06;
+        }
+
+        .geo-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--secondary);
+            border-radius: 50%;
+            opacity: 0.15;
+        }
+
+        /* Section Styles */
+        section {
+            position: relative;
+            padding: 8rem 2rem;
+            z-index: 1;
+        }
+
+        .section-inner {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            margin-bottom: 5rem;
+        }
+
+        .section-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--secondary);
+            margin-bottom: 1rem;
+        }
+
+        .section-label::before,
+        .section-label::after {
+            content: '';
+            width: 20px;
+            height: 2px;
+            background: var(--secondary);
+            opacity: 0.4;
+        }
+
+        .section-title {
+            font-size: clamp(2.5rem, 4vw, 3.5rem);
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            color: var(--primary);
+            line-height: 1.1;
+        }
+
+        .section-subtitle {
+            font-size: 1.125rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin-top: 1rem;
+            line-height: 1.7;
+        }
+
+        /* Products Grid */
         .products-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
@@ -249,13 +472,20 @@
         }
 
         .product-card {
-            background: var(--bg-white);
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
+            background: var(--surface);
+            border-radius: 2rem;
             padding: 2.5rem;
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            border: 1px solid var(--border);
+            transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
             position: relative;
             overflow: hidden;
+            opacity: 0;
+            transform: translateY(40px);
+        }
+
+        .product-card.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .product-card::before {
@@ -265,133 +495,187 @@
             left: 0;
             right: 0;
             height: 4px;
-            background: var(--secondary);
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            opacity: 0;
+            transition: opacity 0.35s;
         }
 
         .product-card:hover {
-            transform: translateY(-4px);
-            box-shadow: var(--shadow);
+            transform: translateY(-8px);
+            box-shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.12);
+            border-color: transparent;
         }
 
         .product-card:hover::before {
-            transform: scaleX(1);
+            opacity: 1;
         }
 
         .product-icon {
-            width: 48px;
-            height: 48px;
-            background: var(--bg);
-            border-radius: 1rem;
+            width: 56px;
+            height: 56px;
+            background: linear-gradient(135deg, rgba(26, 58, 92, 0.08), rgba(46, 125, 50, 0.08));
+            border-radius: 16px;
             display: flex;
             align-items: center;
             justify-content: center;
             margin-bottom: 1.5rem;
+            transition: all 0.35s;
+        }
+
+        .product-card:hover .product-icon {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            transform: scale(1.05);
         }
 
         .product-icon svg {
-            width: 24px;
-            height: 24px;
-            color: var(--primary);
+            width: 28px;
+            height: 28px;
+            stroke: var(--primary);
+            transition: stroke 0.35s;
+        }
+
+        .product-card:hover .product-icon svg {
+            stroke: white;
         }
 
         .product-card h3 {
             font-size: 1.35rem;
-            font-weight: 600;
-            color: var(--text-dark);
-            margin-bottom: 0.75rem;
-            letter-spacing: -0.01em;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
         }
 
         .product-card p {
-            color: var(--text-muted);
             font-size: 0.95rem;
+            color: var(--text-muted);
             line-height: 1.6;
             margin-bottom: 1.5rem;
         }
 
         .product-price {
-            font-family: 'Geist Mono', monospace;
-            font-size: 1.1rem;
-            font-weight: 600;
+            font-size: 2rem;
+            font-weight: 800;
             color: var(--secondary);
+            margin-bottom: 0.25rem;
         }
 
-        .product-price span {
-            font-weight: 400;
+        .product-price-label {
+            font-size: 0.8rem;
             color: var(--text-muted);
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+        }
+
+        .product-card .btn-card {
+            width: 100%;
+            padding: 1rem;
+            background: transparent;
+            border: 2px solid var(--border);
+            border-radius: 100px;
+            font-weight: 600;
             font-size: 0.9rem;
+            color: var(--primary);
+            cursor: pointer;
+            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .product-card .btn-card:hover {
+            background: var(--primary);
+            border-color: var(--primary);
+            color: white;
         }
 
         /* How It Works */
-        .how-it-works {
-            padding: 6rem 0;
-            background: var(--bg-white);
+        .how-section {
+            background: var(--primary);
+            color: white;
         }
 
-        .steps {
+        .how-section .section-label {
+            color: var(--secondary-light);
+        }
+
+        .how-section .section-label::before,
+        .how-section .section-label::after {
+            background: var(--secondary-light);
+        }
+
+        .how-section .section-title {
+            color: white;
+        }
+
+        .how-section .section-subtitle {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .steps-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 3rem;
             position: relative;
         }
 
-        .steps::before {
+        .steps-grid::before {
             content: '';
             position: absolute;
             top: 40px;
             left: 15%;
             right: 15%;
             height: 2px;
-            background: linear-gradient(90deg, var(--border) 0%, var(--secondary) 50%, var(--border) 100%);
+            background: linear-gradient(90deg, var(--secondary), var(--secondary-light), var(--secondary));
+            opacity: 0.4;
         }
 
         .step {
             text-align: center;
-            position: relative;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .step.visible {
+            opacity: 1;
+            transform: translateY(0);
+            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .step-number {
             width: 80px;
             height: 80px;
-            background: var(--primary);
-            color: white;
+            background: rgba(255, 255, 255, 0.1);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.75rem;
-            font-weight: 700;
             margin: 0 auto 1.5rem;
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--secondary-light);
+            border: 2px solid var(--secondary-light);
             position: relative;
             z-index: 1;
         }
 
         .step h3 {
             font-size: 1.25rem;
-            font-weight: 600;
-            color: var(--text-dark);
-            margin-bottom: 0.75rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
         }
 
         .step p {
-            color: var(--text-muted);
             font-size: 0.95rem;
-            max-width: 280px;
-            margin: 0 auto;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.6;
         }
 
         /* About Section */
-        .about {
-            padding: 6rem 0;
+        .about-section {
+            background: var(--bg-alt);
         }
 
-        .about-content {
+        .about-grid {
             display: grid;
             grid-template-columns: 1fr 1.5fr;
-            gap: 4rem;
+            gap: 5rem;
             align-items: center;
         }
 
@@ -399,12 +683,11 @@
             position: relative;
         }
 
-        .about-image-frame {
+        .about-image-main {
             width: 100%;
-            max-width: 400px;
-            aspect-ratio: 4/5;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
-            border-radius: var(--radius);
+            aspect-ratio: 1;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            border-radius: 2rem;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -412,118 +695,123 @@
             overflow: hidden;
         }
 
-        .about-image-frame::before {
+        .about-image-main::before {
             content: '';
             position: absolute;
             inset: 0;
-            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0L60 30L30 60L0 30z' fill='none' stroke='%23ffffff' stroke-opacity='0.1'/%3E%3C/svg%3E");
+            opacity: 0.5;
         }
 
         .about-initial {
-            font-size: 6rem;
-            font-weight: 700;
+            font-size: 8rem;
+            font-weight: 800;
             color: white;
             opacity: 0.9;
+            position: relative;
+            z-index: 1;
         }
 
-        .about-badge {
-            position: absolute;
-            bottom: -1rem;
-            right: -1rem;
-            background: var(--secondary);
-            color: white;
-            padding: 1rem 1.5rem;
-            border-radius: 1.5rem;
-            font-size: 0.9rem;
+        .about-content h3 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .about-title {
+            font-size: 1rem;
+            color: var(--secondary);
             font-weight: 600;
-            box-shadow: var(--shadow);
+            margin-bottom: 2rem;
         }
 
-        .about-text h2 {
-            font-size: clamp(2rem, 4vw, 2.5rem);
-            font-weight: 700;
-            color: var(--text-dark);
-            letter-spacing: -0.02em;
-            margin-bottom: 1.5rem;
-        }
-
-        .about-text p {
+        .about-content p {
             font-size: 1.1rem;
-            color: var(--text-body);
+            color: var(--text-muted);
             line-height: 1.8;
             margin-bottom: 1.5rem;
         }
 
-        .about-text blockquote {
-            border-left: 3px solid var(--secondary);
-            padding-left: 1.5rem;
-            font-size: 1.15rem;
-            font-style: italic;
-            color: var(--text-dark);
-            margin: 2rem 0;
-        }
-
-        /* Contact Section */
-        .contact {
-            padding: 6rem 0;
-            background: var(--primary);
-            color: white;
-        }
-
-        .contact .section-label {
-            color: rgba(255, 255, 255, 0.6);
-        }
-
-        .contact .section-title {
-            color: white;
-        }
-
-        .contact .section-desc {
-            color: rgba(255, 255, 255, 0.7);
-        }
-
-        .contact-wrapper {
+        .about-stats {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-        }
-
-        .contact-info {
-            display: flex;
-            flex-direction: column;
+            grid-template-columns: repeat(3, 1fr);
             gap: 2rem;
+            margin-top: 3rem;
+            padding-top: 3rem;
+            border-top: 1px solid var(--border);
         }
 
-        .contact-item {
-            display: flex;
-            gap: 1rem;
-            align-items: flex-start;
-        }
-
-        .contact-item svg {
-            width: 24px;
-            height: 24px;
-            color: var(--secondary);
-            flex-shrink: 0;
-            margin-top: 0.25rem;
-        }
-
-        .contact-item strong {
-            display: block;
-            font-size: 0.9rem;
-            font-weight: 600;
+        .stat h4 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--primary);
             margin-bottom: 0.25rem;
         }
 
-        .contact-item span {
+        .stat p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        /* Contact Section */
+        .contact-section {
+            background: var(--primary-dark);
+            color: white;
+        }
+
+        .contact-section .section-label {
+            color: var(--secondary-light);
+        }
+
+        .contact-section .section-label::before,
+        .contact-section .section-label::after {
+            background: var(--secondary-light);
+        }
+
+        .contact-section .section-title {
+            color: white;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 5rem;
+        }
+
+        .contact-info h4 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-info p {
             color: rgba(255, 255, 255, 0.7);
-            font-size: 0.95rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        .contact-detail {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .contact-detail svg {
+            width: 20px;
+            height: 20px;
+            stroke: var(--secondary-light);
+        }
+
+        .contact-detail span {
+            color: rgba(255, 255, 255, 0.9);
         }
 
         .contact-form {
             background: rgba(255, 255, 255, 0.05);
-            padding: 2.5rem;
-            border-radius: var(--radius);
+            border-radius: 2rem;
+            padding: 3rem;
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
@@ -534,22 +822,22 @@
         .form-group label {
             display: block;
             font-size: 0.85rem;
-            font-weight: 500;
+            font-weight: 600;
             margin-bottom: 0.5rem;
-            color: rgba(255, 255, 255, 0.8);
+            color: rgba(255, 255, 255, 0.9);
         }
 
         .form-group input,
         .form-group textarea {
             width: 100%;
-            padding: 0.875rem 1rem;
+            padding: 1rem 1.25rem;
             background: rgba(255, 255, 255, 0.08);
             border: 1px solid rgba(255, 255, 255, 0.15);
             border-radius: 1rem;
             color: white;
-            font-size: 1rem;
             font-family: inherit;
-            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            font-size: 1rem;
+            transition: all 0.25s;
         }
 
         .form-group input::placeholder,
@@ -560,390 +848,511 @@
         .form-group input:focus,
         .form-group textarea:focus {
             outline: none;
-            border-color: var(--secondary);
+            border-color: var(--secondary-light);
             background: rgba(255, 255, 255, 0.12);
         }
 
         .form-group textarea {
-            min-height: 120px;
+            min-height: 140px;
             resize: vertical;
         }
 
-        .btn-submit {
+        .contact-form .btn-primary {
             width: 100%;
-            background: var(--secondary);
-            color: white;
-        }
-
-        .btn-submit:hover {
-            background: var(--secondary-light);
-            transform: translateY(-2px);
-        }
-
-        .form-success {
-            display: none;
-            text-align: center;
-            padding: 2rem;
-        }
-
-        .form-success.show {
-            display: block;
-        }
-
-        .form-success svg {
-            width: 48px;
-            height: 48px;
-            color: var(--secondary);
-            margin-bottom: 1rem;
-        }
-
-        .form-success h4 {
-            font-size: 1.25rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .form-success p {
-            color: rgba(255, 255, 255, 0.7);
+            justify-content: center;
+            padding: 1.25rem;
         }
 
         /* Footer */
         footer {
-            padding: 2rem 0;
-            background: var(--text-dark);
-            color: rgba(255, 255, 255, 0.5);
+            background: var(--primary);
+            color: white;
+            padding: 3rem 2rem;
             text-align: center;
-            font-size: 0.85rem;
         }
 
-        /* Mobile Responsive */
-        @media (max-width: 900px) {
-            .nav-links {
-                display: none;
-            }
-
-            .about-content {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-
-            .about-image {
-                order: -1;
-            }
-
-            .about-image-frame {
-                max-width: 300px;
-                margin: 0 auto;
-            }
-
-            .contact-wrapper {
-                grid-template-columns: 1fr;
-            }
-
-            .steps {
-                grid-template-columns: 1fr;
-                gap: 2.5rem;
-            }
-
-            .steps::before {
-                display: none;
-            }
-
-            .step-number {
-                width: 64px;
-                height: 64px;
-                font-size: 1.5rem;
-            }
+        footer p {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.6);
         }
 
-        @media (max-width: 600px) {
-            .hero {
-                padding: 6rem 0 4rem;
-            }
-
-            .hero h1 {
-                font-size: 2.25rem;
-            }
-
-            .hero p {
-                font-size: 1.1rem;
-            }
-
-            .hero-cta {
-                flex-direction: column;
-            }
-
-            .btn {
-                width: 100%;
-            }
-
-            .products-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .product-card {
-                padding: 2rem;
-            }
-
-            section {
-                padding: 4rem 0;
-            }
-
-            .section-title {
-                font-size: 1.75rem;
-            }
-        }
-
-        /* Animation */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
+        /* Animations */
+        @keyframes fadeUp {
             to {
                 opacity: 1;
                 transform: translateY(0);
             }
         }
 
-        .animate-in {
-            animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        @keyframes fadeLeft {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
         }
 
-        .delay-1 { animation-delay: 0.1s; }
-        .delay-2 { animation-delay: 0.2s; }
-        .delay-3 { animation-delay: 0.3s; }
-        .delay-4 { animation-delay: 0.4s; }
-        .delay-5 { animation-delay: 0.5s; }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.4; }
+        }
+
+        /* Scroll Animations */
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .scroll-reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .hero-inner {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-sub {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .hero-ctas {
+                justify-content: center;
+            }
+
+            .hero-visual {
+                display: none;
+            }
+
+            .about-grid,
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .steps-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .steps-grid::before {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero {
+                padding: 7rem 1.5rem 4rem;
+            }
+
+            section {
+                padding: 5rem 1.5rem;
+            }
+
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .about-stats {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+        }
     </style>
 </head>
 <body>
+    <div class="grid-bg"></div>
+
+    <!-- Geometric Accents -->
+    <div class="geo-accent geo-triangle" style="top: 15%; left: 5%;"></div>
+    <div class="geo-accent geo-circle" style="top: 60%; right: 8%;"></div>
+    <div class="geo-accent geo-line-h" style="top: 40%; left: 60%;"></div>
+    <div class="geo-accent geo-line-v" style="top: 20%; right: 20%;"></div>
+    <div class="geo-accent geo-dot" style="top: 75%; left: 15%;"></div>
+    <div class="geo-accent geo-dot" style="top: 30%; right: 25%;"></div>
+
     <!-- Navigation -->
-    <nav>
-        <div class="container">
+    <nav id="navbar">
+        <div class="nav-inner">
             <a href="#" class="logo">Makena<span>Studio</span></a>
             <ul class="nav-links">
                 <li><a href="#products">Products</a></li>
-                <li><a href="#how-it-works">How It Works</a></li>
+                <li><a href="#how">How It Works</a></li>
                 <li><a href="#about">About</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
+            <a href="#contact" class="nav-cta">Get Started</a>
         </div>
     </nav>
 
     <!-- Hero Section -->
     <section class="hero">
-        <div class="container">
+        <div class="hero-inner">
             <div class="hero-content">
-                <div class="hero-badge animate-in">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48l2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48l2.83-2.83"/></svg>
-                    Automation Systems Built for Business
-                </div>
-                <h1 class="animate-in delay-1">Software that does <span>your work</span> for you</h1>
-                <p class="animate-in delay-2">Professional automation tools that replace manual processes. No training required. No consultants needed. Just results.</p>
-                <div class="hero-cta animate-in delay-3">
-                    <a href="#products" class="btn btn-primary">
+                <div class="hero-badge">Engineering Automation</div>
+                <h1>
+                    Software That<br>
+                    <span class="highlight">Works for You</span>
+                </h1>
+                <p class="hero-sub">
+                    No training. No consultants.<br>
+                    Just software that works.
+                </p>
+                <div class="hero-ctas">
+                    <a href="#products" class="btn-primary">
                         View Products
-                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
                     </a>
-                    <a href="#contact" class="btn btn-secondary">Get in Touch</a>
+                    <a href="#contact" class="btn-secondary">Contact Us</a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="hero-card hero-card-1">
+                    <div class="hero-card-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M9 11l3 3L22 4"/>
+                            <path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/>
+                        </svg>
+                    </div>
+                    <h4>Processing Complete</h4>
+                    <p>247 surveys automated</p>
+                    <div class="hero-card-price">R30,000</div>
+                </div>
+                <div class="hero-card hero-card-2">
+                    <div class="hero-card-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/>
+                        </svg>
+                    </div>
+                    <h4>Live Monitoring</h4>
+                    <p>12 vehicles active</p>
+                    <div class="hero-card-price">R20,000</div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Products Section -->
-    <section class="products" id="products">
-        <div class="container">
-            <div class="section-header">
-                <div class="section-label">Products</div>
-                <h2 class="section-title">Tools built to work</h2>
-                <p class="section-desc">Five focused products. Each one replaces a manual process. Pick what you need.</p>
+    <section id="products">
+        <div class="section-inner">
+            <div class="section-header scroll-reveal">
+                <div class="section-label">Automation Tools</div>
+                <h2 class="section-title">Built for South African<br>Engineering Firms</h2>
+                <p class="section-subtitle">
+                    Production-ready software that integrates with your existing workflow.
+                    No consulting fees. No training sessions. Just results.
+                </p>
             </div>
+
             <div class="products-grid">
-                <!-- Product 1 -->
-                <div class="product-card animate-in delay-1">
+                <div class="product-card">
                     <div class="product-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
+                            <path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/>
+                        </svg>
                     </div>
                     <h3>Civil 3D Survey Processor</h3>
-                    <p>Takes CSV survey data and outputs a fully drafted Civil 3D drawing. One click. No manual drafting required.</p>
-                    <div class="product-price">R30,000 <span>+ R5,000/year support</span></div>
+                    <p>Automate survey data extraction from Civil 3D files. Batch process point data, generate contours, and create reports in seconds.</p>
+                    <div class="product-price">R30,000</div>
+                    <div class="product-price-label">+ R5,000 / year support</div>
+                    <button class="btn-card">Learn More</button>
                 </div>
 
-                <!-- Product 2 -->
-                <div class="product-card animate-in delay-2">
+                <div class="product-card">
                     <div class="product-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M9 11l3 3L22 4"/>
+                            <path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/>
+                        </svg>
                     </div>
                     <h3>SANS Plan Examiner</h3>
-                    <p>Web app for building compliance checking. Upload a PDF, get an AI-powered compliance report against 30 SANS 10400 clauses.</p>
-                    <div class="product-price">R50,000 - R150,000 <span>/year</span></div>
+                    <p>AI-powered compliance checking for building plans against SANS 10400 regulations. Generate audit reports in minutes.</p>
+                    <div class="product-price">R50,000</div>
+                    <div class="product-price-label">R150,000 / year</div>
+                    <button class="btn-card">Learn More</button>
                 </div>
 
-                <!-- Product 3 -->
-                <div class="product-card animate-in delay-3">
+                <div class="product-card">
                     <div class="product-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                        </svg>
                     </div>
                     <h3>ScholarTrack</h3>
-                    <p>Student transport safety system for South African schools. Real-time tracking, emergency SOS, and parent notifications.</p>
-                    <div class="product-price">R20,000 - R50,000 <span>/year</span></div>
+                    <p>School transport safety app. Real-time bus tracking, emergency SOS, and parent notifications for South African schools.</p>
+                    <div class="product-price">R20,000</div>
+                    <div class="product-price-label">R50,000 / year</div>
+                    <button class="btn-card">Learn More</button>
                 </div>
 
-                <!-- Product 4 -->
-                <div class="product-card animate-in delay-4">
+                <div class="product-card">
                     <div class="product-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="3" y="3" width="18" height="18" rx="2"/>
+                            <path d="M3 9h18M9 21V9"/>
+                        </svg>
                     </div>
                     <h3>Website Packages</h3>
-                    <p>Professional websites delivered as complete files. Design, development, and deployment all included.</p>
-                    <div class="product-price">R5,000 - R25,000 <span>one-time</span></div>
+                    <p>Professional websites for engineering firms. Includes hosting, SSL, and maintenance. Turnkey solutions from R5,000.</p>
+                    <div class="product-price">R5,000</div>
+                    <div class="product-price-label">R25,000 one-time</div>
+                    <button class="btn-card">Contact for Demo</button>
                 </div>
 
-                <!-- Product 5 -->
-                <div class="product-card animate-in delay-5">
+                <div class="product-card">
                     <div class="product-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 7 4 4 20 4 20 7"/><line x1="9" y1="20" x2="15" y2="20"/><line x1="12" y1="4" x2="12" y2="20"/></svg>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M4 7V4a2 2 0 012-2h8.5L20 7.5V20a2 2 0 01-2 2H6a2 2 0 01-2-2v-3"/>
+                            <polyline points="14 2 14 8 20 8"/>
+                            <path d="M8 13h2M8 17h2M14 13h2M14 17h2"/>
+                        </svg>
                     </div>
                     <h3>OCR Document Processor</h3>
-                    <p>Makes scanned PDFs and images searchable. Extracts text from any document. Exports to structured formats.</p>
-                    <div class="product-price">R15,000 - R40,000 <span>one-time</span></div>
+                    <p>Extract data from scanned documents, invoices, and forms. Supports South African ID documents, passports, and business documents.</p>
+                    <div class="product-price">R15,000</div>
+                    <div class="product-price-label">R40,000 one-time</div>
+                    <button class="btn-card">Contact for Demo</button>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- How It Works Section -->
-    <section class="how-it-works" id="how-it-works">
-        <div class="container">
-            <div class="section-header" style="text-align: center;">
+    <!-- How It Works -->
+    <section id="how" class="how-section">
+        <div class="section-inner">
+            <div class="section-header scroll-reveal">
                 <div class="section-label">Process</div>
-                <h2 class="section-title">How it works</h2>
-                <p class="section-desc" style="margin: 0 auto;">Three steps from manual to automated.</p>
+                <h2 class="section-title">Up and Running<br>in Days, Not Months</h2>
+                <p class="section-subtitle">
+                    Three steps to automation. No consultants. No training sessions.
+                </p>
             </div>
-            <div class="steps">
-                <div class="step animate-in delay-1">
+
+            <div class="steps-grid">
+                <div class="step">
                     <div class="step-number">1</div>
-                    <h3>Choose your tool</h3>
-                    <p>Pick the product that matches your workflow. Each one is built for a specific task.</p>
+                    <h3>Choose Your Tool</h3>
+                    <p>Select the automation product that fits your workflow. Each comes with standard setup and configuration.</p>
                 </div>
-                <div class="step animate-in delay-2">
+                <div class="step">
                     <div class="step-number">2</div>
-                    <h3>Connect your data</h3>
-                    <p>Import your files, connect your systems, set your parameters. It works with what you already have.</p>
+                    <h3>Connect Your Data</h3>
+                    <p>Import your existing files and data. Our software handles the rest with intelligent processing.</p>
                 </div>
-                <div class="step animate-in delay-3">
+                <div class="step">
                     <div class="step-number">3</div>
-                    <h3>Get results</h3>
-                    <p>Run the process. Watch it work. Download the output. No manual steps. No training needed.</p>
+                    <h3>Get Results</h3>
+                    <p>Receive processed output ready to use. Cut processing time from hours to minutes.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- About Section -->
-    <section class="about" id="about">
-        <div class="container">
-            <div class="about-content">
-                <div class="about-image animate-in">
-                    <div class="about-image-frame">
+    <section id="about" class="about-section">
+        <div class="section-inner">
+            <div class="about-grid">
+                <div class="about-image scroll-reveal">
+                    <div class="about-image-main">
                         <span class="about-initial">KM</span>
                     </div>
-                    <div class="about-badge">Founder & Developer</div>
                 </div>
-                <div class="about-text">
+                <div class="about-content scroll-reveal">
                     <div class="section-label">About</div>
-                    <h2 class="animate-in delay-1">Kgothatso Makena</h2>
-                    <p class="animate-in delay-2">I build automation systems that replace manual work. After 15 years in engineering and software development, I learned that most business processes can be automated if you build the right tool.</p>
-                    <p class="animate-in delay-3">Makena Automation Studios exists to put powerful automation tools in the hands of people who need them. No consultants. No training courses. Just software that works.</p>
-                    <blockquote class="animate-in delay-4">"The best software is the kind that does your job for you."</blockquote>
+                    <h3>Kgothatso Makena</h3>
+                    <p class="about-title">Founder, Makena Automation Studios</p>
+                    <p>
+                        Fifteen years in engineering and software development. I've watched firms spend millions on consultants who build slideshows and disappear. That's not how it should work.
+                    </p>
+                    <p>
+                        Makena Automation Studios builds software that actually works. Production-ready tools priced for South African engineering firms, not enterprise corporations.
+                    </p>
+                    <p>
+                        Based in Pretoria. Working with firms across South Africa.
+                    </p>
+                    <div class="about-stats">
+                        <div class="stat">
+                            <h4>15+</h4>
+                            <p>Years Experience</p>
+                        </div>
+                        <div class="stat">
+                            <h4>50+</h4>
+                            <p>Projects Delivered</p>
+                        </div>
+                        <div class="stat">
+                            <h4>100%</h4>
+                            <p>Production Ready</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Contact Section -->
-    <section class="contact" id="contact">
-        <div class="container">
-            <div class="section-header">
+    <section id="contact" class="contact-section">
+        <div class="section-inner">
+            <div class="section-header scroll-reveal">
                 <div class="section-label">Contact</div>
-                <h2 class="section-title">Get in touch</h2>
-                <p class="section-desc">Ready to automate? Send a message and I'll get back to you.</p>
+                <h2 class="section-title">Ready to Automate?</h2>
             </div>
-            <div class="contact-wrapper">
-                <div class="contact-info animate-in delay-1">
-                    <div class="contact-item">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-                        <div>
-                            <strong>Email</strong>
-                            <span>kgothatso@makena.studio</span>
-                        </div>
+
+            <div class="contact-grid">
+                <div class="contact-info scroll-reveal">
+                    <h4>Let's build something that works.</h4>
+                    <p>
+                        Tell us about your workflow. We'll show you how automation can cut your processing time and costs.
+                    </p>
+                    <div class="contact-detail">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                            <polyline points="22,6 12,13 2,6"/>
+                        </svg>
+                        <span>kgothatso@makena.studio</span>
                     </div>
-                    <div class="contact-item">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                        <div>
-                            <strong>Location</strong>
-                            <span>Pretoria, South Africa</span>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                        <div>
-                            <strong>Response Time</strong>
-                            <span>Within 24 hours</span>
-                        </div>
+                    <div class="contact-detail">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/>
+                            <circle cx="12" cy="10" r="3"/>
+                        </svg>
+                        <span>Pretoria, South Africa</span>
                     </div>
                 </div>
-                <div class="contact-form animate-in delay-2">
-                    <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST" id="contactForm">
-                        <div class="form-group">
-                            <label for="name">Your Name</label>
-                            <input type="text" id="name" name="name" placeholder="Enter your name" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email Address</label>
-                            <input type="email" id="email" name="email" placeholder="you@company.co.za" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="message">Your Message</label>
-                            <textarea id="message" name="message" placeholder="Tell me about your automation needs..." required></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-submit">
-                            Send Message
-                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
-                        </button>
-                    </form>
-                </div>
+
+                <form class="contact-form scroll-reveal" onsubmit="handleSubmit(event)">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" placeholder="Your name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" placeholder="you@company.co.za" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" placeholder="Tell us about your workflow and what you'd like to automate..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn-primary">
+                        Send Message
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/>
+                        </svg>
+                    </button>
+                </form>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
     <footer>
-        <div class="container">
-            <p>Makena Automation Studios. Built and run by Kgothatso Makena.</p>
-        </div>
+        <p>&copy; 2024 Makena Automation Studios. Built in Pretoria.</p>
     </footer>
 
-            const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
+    <script>
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Scroll reveal animations
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
         };
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
                 if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
+                    setTimeout(() => {
+                        entry.target.classList.add('visible');
+                    }, index * 100);
                 }
             });
         }, observerOptions);
 
-        document.querySelectorAll('.animate-in').forEach(el => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(20px)';
-            el.style.transition = 'opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)';
-            observer.observe(el);
+        // Observe scroll-reveal elements
+        document.querySelectorAll('.scroll-reveal').forEach(el => {
+            revealObserver.observe(el);
+        });
+
+        // Observe product cards with stagger
+        document.querySelectorAll('.product-card').forEach((card, index) => {
+            const cardObserver = new IntersectionObserver((entries) => {
+                if (entries[0].isIntersecting) {
+                    setTimeout(() => {
+                        card.classList.add('visible');
+                    }, index * 150);
+                    cardObserver.unobserve(card);
+                }
+            }, observerOptions);
+            cardObserver.observe(card);
+        });
+
+        // Observe steps with stagger
+        document.querySelectorAll('.step').forEach((step, index) => {
+            const stepObserver = new IntersectionObserver((entries) => {
+                if (entries[0].isIntersecting) {
+                    setTimeout(() => {
+                        step.classList.add('visible');
+                    }, index * 200);
+                    stepObserver.unobserve(step);
+                }
+            }, observerOptions);
+            stepObserver.observe(step);
+        });
+
+        // Form submission
+        function handleSubmit(event) {
+            event.preventDefault();
+            const form = event.target;
+            const btn = form.querySelector('button[type="submit"]');
+            const originalText = btn.innerHTML;
+
+            btn.innerHTML = 'Sending...';
+            btn.disabled = true;
+
+            setTimeout(() => {
+                btn.innerHTML = 'Message Sent!';
+                btn.style.background = '#2e7d32';
+
+                setTimeout(() => {
+                    form.reset();
+                    btn.innerHTML = originalText;
+                    btn.style.background = '';
+                    btn.disabled = false;
+                }, 2000);
+            }, 1000);
+        }
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
         });
     </script>
 </body>

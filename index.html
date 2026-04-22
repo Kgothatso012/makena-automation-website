@@ -38,45 +38,19 @@
 ═══════════════════════════════════════════════════════════ */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;font-size:16px}
-body{
-  background:var(--bg);
-  color:var(--white);
-  font-family:var(--body);
-  font-weight:300;
-  line-height:1.6;
-  overflow-x:hidden;
-  cursor:none;
-}
+button{font-family:inherit;border:none;background:none}
 a{color:inherit;text-decoration:none}
 img{display:block;max-width:100%}
-button{font-family:inherit;cursor:none;border:none;background:none}
+button{font-family:inherit;border:none;background:none}
 ::selection{background:var(--cyan);color:var(--bg)}
 
 /* ═══════════════════════════════════════════════════════════
-   CUSTOM CURSOR
+   SPRING TOKENS
 ═══════════════════════════════════════════════════════════ */
-#cur{
-  position:fixed;top:0;left:0;z-index:9999;
-  width:10px;height:10px;
-  background:var(--cyan);
-  border-radius:50%;
-  pointer-events:none;
-  transform:translate(-50%,-50%);
-  transition:width .2s,height .2s,background .2s,mix-blend-mode .2s;
-  mix-blend-mode:difference;
+:root {
+  --spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --spring-smooth: cubic-bezier(0.16, 1, 0.3, 1);
 }
-#cur-ring{
-  position:fixed;top:0;left:0;z-index:9998;
-  width:40px;height:40px;
-  border:1px solid rgba(0,229,255,.4);
-  border-radius:50%;
-  pointer-events:none;
-  transform:translate(-50%,-50%);
-  transition:width .3s,height .3s,border-color .3s;
-}
-body.cursor-link #cur{width:60px;height:60px;mix-blend-mode:normal;background:rgba(0,229,255,.15)}
-body.cursor-link #cur-ring{width:60px;height:60px;border-color:var(--cyan)}
-body.cursor-text #cur{width:4px;height:24px;border-radius:2px;background:var(--cyan)}
 
 /* ═══════════════════════════════════════════════════════════
    LOADER
@@ -105,7 +79,7 @@ body.cursor-text #cur{width:4px;height:24px;border-radius:2px;background:var(--c
   position:absolute;left:0;top:0;bottom:0;
   background:var(--cyan);
   width:0%;
-  transition:width .05s linear;
+  transition:width .05s var(--spring-smooth);
 }
 .loader-num{
   font-family:var(--ui);
@@ -288,6 +262,7 @@ body::before{
   border:1px solid var(--border);color:var(--muted);
 }
 .btn-mag-ghost:hover{border-color:var(--border-hi);color:var(--white)}
+.btn-mag:active{transform:translateY(-1px) scale(0.98)}
 .hero-scroll{
   position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);
   z-index:2;
@@ -433,7 +408,7 @@ body::before{
   opacity:0;transition:opacity .4s;pointer-events:none;
 }
 .prod-card:hover::after{opacity:1}
-.prod-card:hover{background:#0c1628}
+.prod-card:hover{background:#0c1628;transform:translateY(-4px);transition:background .4s,transform .5s var(--spring);}
 .prod-card-top{
   content:'';position:absolute;top:0;left:0;right:0;height:1px;
   background:linear-gradient(90deg,var(--cyan),transparent);
@@ -482,7 +457,7 @@ body::before{
   font-family:var(--ui);font-size:.6rem;
   letter-spacing:.15em;text-transform:uppercase;
   padding:.4rem 1rem;border:1px solid var(--border);
-  color:var(--dim);transition:all .2s;cursor:none;
+  color:var(--dim);transition:all .2s;
 }
 .wf.active,.wf:hover{border-color:var(--border-hi);color:var(--cyan)}
 .work-grid{
@@ -502,7 +477,7 @@ body::before{
   transition:background .4s;min-height:280px;
   display:flex;flex-direction:column;justify-content:space-between;
 }
-.work-card:hover{background:#0c1628}
+.work-card:hover{background:#0c1628;transform:translateY(-4px);transition:background .4s,transform .5s var(--spring);}
 .work-card-bg{
   position:absolute;inset:0;
   background-size:cover;background-position:center;
@@ -564,7 +539,7 @@ body::before{
   position:relative;transition:background .3s;
 }
 .price-card.feat{background:rgba(0,229,255,.04)}
-.price-card:hover{background:#0c1628}
+.price-card:hover{background:#0c1628;transform:translateY(-4px);transition:background .3s,transform .5s var(--spring);}
 .price-tier{
   font-family:var(--ui);font-size:.55rem;
   letter-spacing:.25em;text-transform:uppercase;
@@ -642,7 +617,7 @@ body::before{
   background:var(--bg-card);padding:2rem 2rem 2.5rem;
   position:relative;overflow:hidden;transition:background .3s;
 }
-.oss-card:hover{background:#0c1628}
+.oss-card:hover{background:#0c1628;transform:translateY(-4px);transition:background .3s,transform .5s var(--spring);}
 .oss-card::before{
   content:'';position:absolute;top:0;left:0;right:0;height:1px;
   background:linear-gradient(90deg,var(--orange),transparent);
@@ -724,7 +699,7 @@ body::before{
   width:44px;height:44px;border:1px solid var(--border);
   display:flex;align-items:center;justify-content:center;
   color:var(--muted);font-size:1rem;
-  transition:border-color .2s,color .2s,background .2s;cursor:none;
+  transition:border-color .2s,color .2s,background .2s;
 }
 .testi-btn:hover{border-color:var(--border-hi);color:var(--cyan);background:var(--cyan-dim)}
 .testi-dots{
@@ -732,7 +707,7 @@ body::before{
 }
 .testi-dot{
   width:6px;height:6px;border-radius:50%;
-  background:var(--border);transition:background .3s,transform .3s;cursor:none;
+  background:var(--border);transition:background .3s,transform .3s;
 }
 .testi-dot.active{background:var(--cyan);transform:scale(1.3)}
 
@@ -748,7 +723,7 @@ body::before{
   font-family:var(--ui);font-size:.9rem;font-weight:600;
   color:var(--white);padding:1.4rem 0;
   display:flex;align-items:center;justify-content:space-between;gap:1rem;
-  cursor:none;letter-spacing:.02em;
+  letter-spacing:.02em;
 }
 .faq-icon{
   font-family:var(--ui);font-size:1.1rem;
@@ -872,6 +847,14 @@ body::before{
 }
 .form-input:focus,.form-select:focus,.form-textarea:focus{
   border-color:var(--border-hi);background:rgba(10,16,32,.9);
+  box-shadow:0 0 0 3px rgba(0,229,255,.1);
+  transition:border-color .3s var(--spring-smooth),background .3s var(--spring-smooth),box-shadow .3s var(--spring-smooth);
+}
+.form-input.error,.form-select.error,.form-textarea.error{
+  border-color:var(--orange);box-shadow:0 0 0 3px rgba(255,77,0,.1);
+}
+.form-input.success,.form-select.success,.form-textarea.success{
+  border-color:#00e676;box-shadow:0 0 0 3px rgba(0,230,118,.1);
 }
 .form-textarea{min-height:110px}
 .form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
@@ -881,9 +864,10 @@ body::before{
   padding:1rem;background:var(--cyan);color:var(--bg);
   font-weight:700;border:none;
   clip-path:polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,10px 100%,0 calc(100% - 10px));
-  transition:opacity .2s;cursor:none;
+  transition:opacity .2s,transform .2s;
 }
 .form-submit:hover{opacity:.85}
+.form-submit:active{transform:translateY(0) scale(0.98)}
 
 /* ═══════════════════════════════════════════════════════════
    FOOTER
@@ -983,10 +967,6 @@ footer{
 </style>
 </head>
 <body>
-
-<!-- CURSOR -->
-<div id="cur"></div>
-<div id="cur-ring"></div>
 
 <!-- LOADER -->
 <div id="loader">
@@ -1698,10 +1678,6 @@ document.addEventListener('mousemove',e=>{
   ring.style.left=rx+'px'; ring.style.top=ry+'px';
   requestAnimationFrame(animRing);
 })();
-document.querySelectorAll('a,button,.wf,.faq-q,.prod-card,.work-card,.oss-card,.price-card,.testi-btn,.snav-dot,.ch').forEach(el=>{
-  el.addEventListener('mouseenter',()=>document.body.classList.add('cursor-link'));
-  el.addEventListener('mouseleave',()=>document.body.classList.remove('cursor-link'));
-});
 
 /* ═══════════════════════════════════════════════════════════
    THREE.JS HERO — Wireframe Torus + Floating Particles
@@ -1946,23 +1922,6 @@ document.querySelectorAll('.wf').forEach(btn=>{
       }
       card.style.transition='opacity .4s,transform .4s';
     });
-  });
-});
-
-/* ═══════════════════════════════════════════════════════════
-   NAV MAGNETIC BUTTONS (subtle)
-═══════════════════════════════════════════════════════════ */
-document.querySelectorAll('.btn-mag').forEach(btn=>{
-  btn.addEventListener('mousemove',e=>{
-    const r=btn.getBoundingClientRect();
-    const x=(e.clientX-r.left-r.width/2)*.25;
-    const y=(e.clientY-r.top-r.height/2)*.25;
-    btn.style.transform=`translate(${x}px,${y}px)`;
-    btn.style.transition='transform .1s';
-  });
-  btn.addEventListener('mouseleave',()=>{
-    btn.style.transform='translate(0,0)';
-    btn.style.transition='transform .4s ease';
   });
 });
 

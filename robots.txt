@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://kgothatso012.github.io/makena-automation-website/sitemap.xml

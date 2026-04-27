@@ -1018,6 +1018,146 @@ footer{
   margin-right:.4rem;animation:pulse-dot 1.5s ease-in-out infinite;
 }
 @keyframes pulse-dot{0%,100%{opacity:1}50%{opacity:.3}}
+
+/* ═══════════════════════════════════════════════════════════
+   WEBSITE PORTFOLIO
+═══════════════════════════════════════════════════════════ */
+.port-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:1.5rem;
+}
+.port-card{
+  background:var(--bg-card);
+  border:1px solid var(--border);
+  overflow:hidden;
+  transition:border-color .3s,transform .3s;
+}
+.port-card:hover{
+  border-color:var(--border-hi);
+  transform:translateY(-4px);
+}
+.port-preview{
+  background:#030811;
+  border-bottom:1px solid var(--border);
+}
+.port-browser-bar{
+  display:flex;
+  align-items:center;
+  gap:.4rem;
+  padding:.6rem .8rem;
+  background:#0d1520;
+  border-bottom:1px solid var(--border);
+}
+.port-dot{
+  width:10px;height:10px;border-radius:50%;
+  display:inline-block;
+}
+.port-url{
+  font-family:var(--ui);
+  font-size:.55rem;
+  letter-spacing:.08em;
+  color:var(--dim);
+  margin-left:.5rem;
+  background:#1a2535;
+  padding:.25rem .8rem;
+  border-radius:20px;
+}
+.port-mockup{
+  padding:1rem 1rem .8rem;
+  min-height:160px;
+  display:flex;
+  flex-direction:column;
+  gap:.5rem;
+}
+.port-mock-nav{
+  height:8px;background:rgba(255,255,255,.07);
+  border-radius:2px;
+}
+.port-mock-hero{
+  height:45px;background:rgba(0,229,255,.08);
+  border-radius:3px;
+}
+.port-mock-content{
+  display:flex;flex-direction:column;gap:.35rem;
+}
+.port-mock-line{
+  height:6px;border-radius:2px;
+  background:rgba(255,255,255,.06);
+}
+.port-mock-line.long{width:90%}
+.port-mock-line.medium{width:65%}
+.port-mock-line.short{width:45%}
+.port-mock-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:.3rem;
+  margin-top:.2rem;
+}
+.port-mock-img{
+  height:35px;
+  background:linear-gradient(135deg,rgba(255,77,0,.12),rgba(0,229,255,.08));
+  border-radius:3px;
+}
+.port-info{
+  padding:1.5rem 1.8rem 1.8rem;
+}
+.port-cat{
+  font-family:var(--ui);
+  font-size:.55rem;
+  letter-spacing:.15em;
+  text-transform:uppercase;
+  color:var(--cyan);
+  margin-bottom:.6rem;
+}
+.port-name{
+  font-family:var(--display);
+  font-size:1.3rem;
+  color:var(--white);
+  margin-bottom:.6rem;
+}
+.port-desc{
+  font-size:.78rem;
+  color:var(--muted);
+  line-height:1.7;
+  font-family:var(--body);
+  margin-bottom:1.2rem;
+}
+.port-metrics{
+  display:flex;gap:1.5rem;
+  margin-bottom:1.2rem;
+}
+.port-metric{
+  display:flex;flex-direction:column;gap:.15rem;
+}
+.port-metric-val{
+  font-family:var(--ui);
+  font-size:.85rem;
+  font-weight:700;
+  color:var(--white);
+}
+.port-metric-label{
+  font-family:var(--ui);
+  font-size:.6rem;
+  letter-spacing:.1em;
+  color:var(--dim);
+  text-transform:uppercase;
+}
+.port-link{
+  font-family:var(--ui);
+  font-size:.65rem;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  color:var(--cyan);
+  border:1px solid rgba(0,229,255,.25);
+  padding:.5rem 1.2rem;
+  display:inline-block;
+  transition:background .2s,color .2s;
+}
+.port-link:hover{background:var(--cyan);color:var(--bg)}
+
+@media(max-width:900px){
+  .port-grid{grid-template-columns:1fr}
+  .port-mockup{min-height:120px}
+}
 @media(max-width:768px){#wa-float{bottom:1.2rem;right:1.2rem;width:54px;height:54px}#wa-float svg{width:28px;height:28px}#wa-tooltip{display:none}}
 </style>
 </head>
@@ -1357,6 +1497,107 @@ footer{
               <li>Priority support</li>
             </ul>
             <a href="#contact" class="price-link">Get a Quote</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- WEBSITE PORTFOLIO -->
+    <div style="margin-top:5rem">
+      <div class="reveal" style="margin-bottom:2.5rem">
+        <div class="s-tag">Selected Work</div>
+        <h3 style="font-family:var(--display);font-size:2rem;color:var(--white);margin-top:.8rem">Recent Website Projects</h3>
+        <p style="color:var(--muted);font-size:.85rem;margin-top:.8rem;font-family:var(--ui)">Real sites, real businesses. Hover to preview.</p>
+      </div>
+      <div class="port-grid">
+        <!-- Site 1 -->
+        <div class="port-card reveal d1">
+          <div class="port-preview">
+            <div class="port-browser-bar">
+              <span class="port-dot" style="background:#ff5f57"></span>
+              <span class="port-dot" style="background:#ffbd2e"></span>
+              <span class="port-dot" style="background:#28ca42"></span>
+              <span class="port-url">centurionsurveyors.co.za</span>
+            </div>
+            <div class="port-mockup" style="background:linear-gradient(160deg,#04070f 0%,#0a1628 100%)">
+              <div class="port-mock-nav"></div>
+              <div class="port-mock-hero"></div>
+              <div class="port-mock-content">
+                <div class="port-mock-line long"></div>
+                <div class="port-mock-line medium"></div>
+                <div class="port-mock-grid"></div>
+              </div>
+            </div>
+          </div>
+          <div class="port-info">
+            <div class="port-cat">Business Website · R12,000</div>
+            <div class="port-name">Centurion Surveyors</div>
+            <div class="port-desc">Professional presence for a Gauteng surveying firm. Project showcase, contact form, Google Maps integration.</div>
+            <div class="port-metrics">
+              <div class="port-metric"><span class="port-metric-val">7 days</span><span class="port-metric-label">delivery</span></div>
+              <div class="port-metric"><span class="port-metric-val">100%</span><span class="port-metric-label">mobile score</span></div>
+            </div>
+            <a href="https://kgothatso012.github.io/makena-automation-website/" class="port-link" target="_blank">View live ↗</a>
+          </div>
+        </div>
+        <!-- Site 2 -->
+        <div class="port-card reveal d2">
+          <div class="port-preview">
+            <div class="port-browser-bar">
+              <span class="port-dot" style="background:#ff5f57"></span>
+              <span class="port-dot" style="background:#ffbd2e"></span>
+              <span class="port-dot" style="background:#28ca42"></span>
+              <span class="port-url">tsharchitects.co.za</span>
+            </div>
+            <div class="port-mockup" style="background:linear-gradient(160deg,#0d0d1a 0%,#1a0d2e 100%)">
+              <div class="port-mock-nav"></div>
+              <div class="port-mock-hero"></div>
+              <div class="port-mock-content">
+                <div class="port-mock-line long"></div>
+                <div class="port-mock-line short"></div>
+                <div class="port-mock-img"></div>
+              </div>
+            </div>
+          </div>
+          <div class="port-info">
+            <div class="port-cat">Portfolio Website · R18,500</div>
+            <div class="port-name">TSH Architects</div>
+            <div class="port-desc">Minimal portfolio for an architectural firm. Project gallery, client testimonials, inquiry pipeline.</div>
+            <div class="port-metrics">
+              <div class="port-metric"><span class="port-metric-val">10 days</span><span class="port-metric-label">delivery</span></div>
+              <div class="port-metric"><span class="port-metric-val">98</span><span class="port-metric-label">SEO score</span></div>
+            </div>
+            <a href="https://kgothatso012.github.io/makena-automation-website/" class="port-link" target="_blank">View live ↗</a>
+          </div>
+        </div>
+        <!-- Site 3 -->
+        <div class="port-card reveal d3">
+          <div class="port-preview">
+            <div class="port-browser-bar">
+              <span class="port-dot" style="background:#ff5f57"></span>
+              <span class="port-dot" style="background:#ffbd2e"></span>
+              <span class="port-dot" style="background:#28ca42"></span>
+              <span class="port-url">makenastudio.co.za</span>
+            </div>
+            <div class="port-mockup" style="background:linear-gradient(160deg,#04070f 0%,#001a2e 60%,#003d5c 100%)">
+              <div class="port-mock-nav"></div>
+              <div class="port-mock-hero" style="opacity:.4"></div>
+              <div class="port-mock-content">
+                <div class="port-mock-line long" style="background:rgba(0,229,255,.3)"></div>
+                <div class="port-mock-line medium" style="background:rgba(0,229,255,.2)"></div>
+                <div class="port-mock-grid" style="border-color:rgba(0,229,255,.15)"></div>
+              </div>
+            </div>
+          </div>
+          <div class="port-info">
+            <div class="port-cat">Automation Studio · R25,000</div>
+            <div class="port-name">Makena Automation Studios</div>
+            <div class="port-desc">Dark-themed SaaS studio site. Product showcase, pricing, contact form, GitHub integration.</div>
+            <div class="port-metrics">
+              <div class="port-metric"><span class="port-metric-val">14 days</span><span class="port-metric-label">delivery</span></div>
+              <div class="port-metric"><span class="port-metric-val">99</span><span class="port-metric-label">performance</span></div>
+            </div>
+            <a href="https://kgothatso012.github.io/makena-automation-website/" class="port-link" target="_blank">View live ↗</a>
           </div>
         </div>
       </div>

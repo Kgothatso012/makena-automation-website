@@ -640,50 +640,6 @@ body::before{
 }
 
 /* ═══════════════════════════════════════════════════════════
-   OPEN SOURCE
-═══════════════════════════════════════════════════════════ */
-.oss-grid{
-  display:grid;grid-template-columns:repeat(3,1fr);gap:1px;
-  background:var(--border);border:1px solid var(--border);
-}
-.oss-card{
-  background:var(--bg-card);padding:2rem 2rem 2.5rem;
-  position:relative;overflow:hidden;transition:background .3s;
-}
-.oss-card:hover{background:#0c1628}
-.oss-card::before{
-  content:'';position:absolute;top:0;left:0;right:0;height:1px;
-  background:linear-gradient(90deg,var(--orange),transparent);
-  transform:scaleX(0);transform-origin:left;transition:transform .4s;
-}
-.oss-card:hover::before{transform:scaleX(1)}
-.oss-lang-dot{
-  width:9px;height:9px;border-radius:50%;display:inline-block;
-  margin-right:.5rem;flex-shrink:0;
-}
-.oss-lang{
-  font-family:var(--ui);font-size:.6rem;
-  letter-spacing:.15em;text-transform:uppercase;
-  color:var(--muted);display:flex;align-items:center;
-  margin-bottom:1rem;
-}
-.oss-name{
-  font-family:var(--display);font-size:1.3rem;
-  color:var(--white);margin-bottom:.7rem;
-}
-.oss-desc{
-  font-size:.8rem;color:var(--muted);line-height:1.6;
-  margin-bottom:1.5rem;font-weight:300;
-}
-.oss-link{
-  font-family:var(--ui);font-size:.6rem;
-  letter-spacing:.15em;text-transform:uppercase;
-  color:var(--orange);display:flex;align-items:center;gap:.4rem;
-}
-.oss-link::after{content:'↗'}
-.oss-link:hover{color:var(--white)}
-
-/* ═══════════════════════════════════════════════════════════
    TESTIMONIALS CAROUSEL
 ═══════════════════════════════════════════════════════════ */
 .testi-outer{overflow:hidden;position:relative}
@@ -1180,7 +1136,6 @@ footer{
   <div class="snav-dot" data-section="products" data-label="Products"></div>
   <div class="snav-dot" data-section="work" data-label="Work"></div>
   <div class="snav-dot" data-section="websites" data-label="Websites"></div>
-  <div class="snav-dot" data-section="opensource" data-label="Open Source"></div>
   <div class="snav-dot" data-section="testimonials" data-label="Clients"></div>
   <div class="snav-dot" data-section="faq" data-label="FAQ"></div>
   <div class="snav-dot" data-section="about" data-label="About"></div>
@@ -1193,9 +1148,8 @@ footer{
   <ul class="nav-links">
     <li><a href="#products">Products</a></li>
     <li><a href="#work">Work</a></li>
-    <li><a href="#websites">Websites</a></li>
-    <li><a href="#opensource">Open Source</a></li>
-    <li><a href="#about">About</a></li>
+     <li><a href="#websites">Websites</a></li>
+     <li><a href="#about">About</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
   <a href="#contact" class="nav-cta-btn"><span>Get Started</span></a>
@@ -1601,59 +1555,6 @@ footer{
           </div>
         </div>
       </div>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════════════════════════════════════════════════════
-     OPEN SOURCE
-══════════════════════════════════════════════════════════ -->
-<section id="opensource" class="s s-alt" data-section="opensource">
-  <div class="s-inner">
-    <div class="reveal" style="margin-bottom:4rem">
-      <div class="s-tag">04 — Open Source</div>
-      <h2 class="s-title">Code Open<br><span class="out">For Inspection</span></h2>
-    </div>
-    <div class="oss-grid">
-      <div class="oss-card reveal d1">
-        <div class="oss-lang"><span class="oss-lang-dot" style="background:#3178c6"></span>TypeScript</div>
-        <div class="oss-name">ScholarTrack</div>
-        <div class="oss-desc">RSA government child transport safety app — Parent, Driver, Admin dashboards with real-time fleet tracking.</div>
-        <a href="https://github.com/Kgothatso012/ScholarTrack" target="_blank" class="oss-link">GitHub</a>
-      </div>
-      <div class="oss-card reveal d2">
-        <div class="oss-lang"><span class="oss-lang-dot" style="background:#3776ab"></span>Python</div>
-        <div class="oss-name">BTMM Trader Pro</div>
-        <div class="oss-desc">Beat The Market Maker system — real-time MT5 bridge, trade journal, pattern analysis, AI learning.</div>
-        <a href="https://github.com/Kgothatso012/BTMM-TRADER-PRO" target="_blank" class="oss-link">GitHub</a>
-      </div>
-      <div class="oss-card reveal d3">
-        <div class="oss-lang"><span class="oss-lang-dot" style="background:#e34c26"></span>HTML</div>
-        <div class="oss-name">SANS Plan Examiner</div>
-        <div class="oss-desc">AI-powered building plan compliance against SANS 10400. PDF upload, instant audit report.</div>
-        <a href="https://github.com/Kgothatso012/sans-plan-examiner" target="_blank" class="oss-link">GitHub</a>
-      </div>
-      <div class="oss-card reveal d4">
-        <div class="oss-lang"><span class="oss-lang-dot" style="background:#3178c6"></span>TypeScript</div>
-        <div class="oss-name">FleetFlowingZA</div>
-        <div class="oss-desc">Fleet tracking logistics app built with Expo React Native. Real-time vehicle monitoring for SA transport.</div>
-        <a href="https://github.com/Kgothatso012/FleetFlowingZA" target="_blank" class="oss-link">GitHub</a>
-      </div>
-      <div class="oss-card reveal d5">
-        <div class="oss-lang"><span class="oss-lang-dot" style="background:#3178c6"></span>TypeScript</div>
-        <div class="oss-name">The Witness</div>
-        <div class="oss-desc">Bible AI Application — a reverent AI preacher powered by MiniMax API. Scripture study and theological Q&A.</div>
-        <a href="https://github.com/Kgothatso012/the-witness" target="_blank" class="oss-link">GitHub</a>
-      </div>
-      <div class="oss-card reveal d6">
-        <div class="oss-lang"><span class="oss-lang-dot" style="background:#e34c26"></span>HTML</div>
-        <div class="oss-name">Makena Website</div>
-        <div class="oss-desc">This studio — production-ready automation tools for South African engineering firms. Built with vanilla stack.</div>
-        <a href="https://github.com/Kgothatso012/makena-automation-website" target="_blank" class="oss-link">GitHub</a>
-      </div>
-    </div>
-    <div style="text-align:center;margin-top:2.5rem" class="reveal">
-      <a href="https://github.com/kgothatso012" target="_blank" class="btn-mag btn-mag-ghost">View All on GitHub ↗</a>
     </div>
   </div>
 </section>

@@ -927,6 +927,11 @@ body::before{
   transition:opacity .2s;cursor:none;
 }
 .form-submit:hover{opacity:.85}
+#form-feedback{margin-bottom:16px;min-height:24px}
+#form-feedback.success{color:#10b981;padding:10px 14px;background:rgba(16,185,129,.1);border:1px solid rgba(16,185,129,.3);border-radius:6px;font-size:.875rem}
+#form-feedback.error{color:#ef4444;padding:10px 14px;background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.3);border-radius:6px;font-size:.875rem}
+#form-submit-btn:disabled{opacity:.5;cursor:not-allowed}
+.contact-form .form-group{margin-bottom:14px}
 
 /* ═══════════════════════════════════════════════════════════
    FOOTER
@@ -1874,36 +1879,39 @@ footer{
         </div>
       </div>
       <div class="contact-r reveal-right">
-        <div class="form-row">
-          <div class="form-group">
-            <label class="form-label">Name</label>
-            <input type="text" class="form-input" placeholder="Your name">
+        <form class="contact-form" id="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+          <div id="form-feedback"></div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Name</label>
+              <input type="text" class="form-input" name="name" placeholder="Your name" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Email</label>
+              <input type="email" class="form-input" name="email" placeholder="you@company.co.za" required>
+            </div>
           </div>
           <div class="form-group">
-            <label class="form-label">Email</label>
-            <input type="email" class="form-input" placeholder="you@company.co.za">
+            <label class="form-label">Company</label>
+            <input type="text" class="form-input" name="company" placeholder="Company name">
           </div>
-        </div>
-        <div class="form-group">
-          <label class="form-label">Company</label>
-          <input type="text" class="form-input" placeholder="Company name">
-        </div>
-        <div class="form-group">
-          <label class="form-label">Budget Range</label>
-          <select class="form-select">
-            <option value="">Select a range</option>
-            <option>R5,000 – R15,000</option>
-            <option>R15,000 – R30,000</option>
-            <option>R30,000 – R50,000</option>
-            <option>R50,000 – R100,000</option>
-            <option>R100,000+</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label class="form-label">Describe Your Workflow</label>
-          <textarea class="form-textarea" placeholder="Tell us what you need automated..."></textarea>
-        </div>
-        <button class="form-submit">→ Send Message</button>
+          <div class="form-group">
+            <label class="form-label">Budget Range</label>
+            <select class="form-select" name="budget">
+              <option value="">Select a range</option>
+              <option value="R5,000 – R15,000">R5,000 – R15,000</option>
+              <option value="R15,000 – R30,000">R15,000 – R30,000</option>
+              <option value="R30,000 – R50,000">R30,000 – R50,000</option>
+              <option value="R50,000 – R100,000">R50,000 – R100,000</option>
+              <option value="R100,000+">R100,000+</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Describe Your Workflow</label>
+            <textarea class="form-textarea" name="message" placeholder="Tell us what you need automated..." required></textarea>
+          </div>
+          <button type="submit" class="form-submit" id="form-submit-btn">→ Send Message</button>
+        </form>
       </div>
     </div>
   </div>
@@ -1939,8 +1947,8 @@ footer{
     <div>
       <div class="f-col-title">Legal</div>
       <ul class="f-links">
-        <li><a href="#">Privacy Policy</a></li>
-        <li><a href="#">Terms of Service</a></li>
+        <li><a href="#contact">Privacy Policy</a></li>
+        <li><a href="#contact">Terms of Service</a></li>
         <li><a href="https://github.com/kgothatso012" target="_blank">GitHub</a></li>
         <li><a href="#contact">Request Quote</a></li>
       </ul>
@@ -2256,6 +2264,42 @@ document.addEventListener('mousemove',e=>{
   const py=(e.clientY/window.innerHeight-.5)*20;
   gridLines.style.backgroundPosition=`${px}px ${py}px`;
 });
+
+/* ═══════════════════════════════════════════════════════════
+   CONTACT FORM — Formspree handler
+═══════════════════════════════════════════════════════════ */
+const contactForm = document.getElementById('contact-form');
+const feedback = document.getElementById('form-feedback');
+const submitBtn = document.getElementById('form-submit-btn');
+if(contactForm){
+  contactForm.addEventListener('submit',async e=>{
+    e.preventDefault();
+    feedback.className = '';
+    feedback.textContent = 'Sending…';
+    submitBtn.disabled = true;
+    try {
+      const res = await fetch(contactForm.action,{
+        method:'POST',
+        body:new FormData(contactForm),
+        headers:{Accept:'application/json'}
+      });
+      if(res.ok){
+        feedback.className = 'success';
+        feedback.textContent = "Thanks! We'll be in touch within 24 hours.";
+        contactForm.reset();
+      } else {
+        const data = await res.json();
+        feedback.className = 'error';
+        feedback.textContent = data.errors ? data.errors.map(e=>e.message).join(', ') : 'Something went wrong. Try emailing us directly at makena@autonomation.co.za';
+      }
+    } catch{
+      feedback.className = 'error';
+      feedback.textContent = 'Network error. Please email us directly at makena@autonomation.co.za';
+    } finally {
+      submitBtn.disabled = false;
+    }
+  });
+}
 </script>
 
 <!-- WHATSAPP FLOATING BUTTON -->

@@ -1104,11 +1104,18 @@ footer{
   border-radius:20px;
 }
 .port-mockup{
-  padding:1rem 1rem .8rem;
+  padding:0;
   min-height:160px;
   display:flex;
   flex-direction:column;
-  gap:.5rem;
+  overflow:hidden;
+  border-radius:0 0 6px 6px;
+}
+.port-screenshot{
+  width:100%;
+  flex:1;
+  object-fit:cover;
+  display:block;
 }
 .port-mock-nav{
   height:8px;background:rgba(255,255,255,.07);
@@ -1557,14 +1564,8 @@ footer{
               <span class="port-dot" style="background:#28ca42"></span>
               <span class="port-url">makenastudio.co.za</span>
             </div>
-            <div class="port-mockup" style="background:linear-gradient(160deg,#04070f 0%,#001a2e 60%,#003d5c 100%)">
-              <div class="port-mock-nav"></div>
-              <div class="port-mock-hero" style="opacity:.4"></div>
-              <div class="port-mock-content">
-                <div class="port-mock-line long" style="background:rgba(0,229,255,.3)"></div>
-                <div class="port-mock-line medium" style="background:rgba(0,229,255,.2)"></div>
-                <div class="port-mock-grid" style="border-color:rgba(0,229,255,.15)"></div>
-              </div>
+            <div class="port-mockup" style="background:#0a1628">
+              <img class="port-screenshot" src="screenshots/makena-automation.png" alt="Makena Automation Studios">
             </div>
           </div>
           <div class="port-info">
@@ -1587,14 +1588,8 @@ footer{
               <span class="port-dot" style="background:#28ca42"></span>
               <span class="port-url">makenabgroup.co.za</span>
             </div>
-            <div class="port-mockup" style="background:linear-gradient(160deg,#04070f 0%,#0a1a0a 100%)">
-              <div class="port-mock-nav"></div>
-              <div class="port-mock-hero" style="opacity:.3"></div>
-              <div class="port-mock-content">
-                <div class="port-mock-line long" style="background:rgba(0,200,83,.3)"></div>
-                <div class="port-mock-line medium" style="background:rgba(0,200,83,.2)"></div>
-                <div class="port-mock-grid" style="border-color:rgba(0,200,83,.15)"></div>
-              </div>
+            <div class="port-mockup" style="background:#0a1a0a">
+              <img class="port-screenshot" src="screenshots/makena-bgroup.png" alt="Makena B-Group website">
             </div>
           </div>
           <div class="port-info">
@@ -1617,14 +1612,8 @@ footer{
               <span class="port-dot" style="background:#28ca42"></span>
               <span class="port-url">scholartrack.co.za</span>
             </div>
-            <div class="port-mockup" style="background:linear-gradient(160deg,#0a0500 0%,#1a0d00 50%,#2d1800 100%)">
-              <div class="port-mock-nav" style="background:rgba(217,119,6,.2)"></div>
-              <div class="port-mock-hero" style="opacity:.4;background:rgba(217,119,6,.15)"></div>
-              <div class="port-mock-content">
-                <div class="port-mock-line long" style="background:rgba(217,119,6,.4)"></div>
-                <div class="port-mock-line medium" style="background:rgba(217,119,6,.25)"></div>
-                <div class="port-mock-grid" style="border-color:rgba(217,119,6,.15)"></div>
-              </div>
+            <div class="port-mockup" style="background:#1a0d00">
+              <img class="port-screenshot" src="screenshots/scholartrack.png" alt="ScholarTrack website">
             </div>
           </div>
           <div class="port-info">
